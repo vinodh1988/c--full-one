@@ -24,6 +24,7 @@ namespace ObjectOriented.Glencore
                     connection.Open();
                     Console.WriteLine("Connection to SQL Server established successfully.");
 
+                    CreatePerson(connection,5, "Manish", "Mumbai");
                     string query = "select * from People";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -35,10 +36,26 @@ namespace ObjectOriented.Glencore
                         }
                     }
 
+
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
+
+            static void CreatePerson(SqlConnection connection, int Sno,string Name,String City)
+            {
+                string query = "INSERT INTO People (Sno, Name, City) VALUES (@Sno, @Name, @City)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Sno", Sno);
+                    command.Parameters.AddWithValue("@Name", Name);
+                    command.Parameters.AddWithValue("@City", City);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} row(s) inserted.");
                 }
             }
         }
