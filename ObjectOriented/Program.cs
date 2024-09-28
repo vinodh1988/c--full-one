@@ -3,7 +3,21 @@ using ObjectOriented.Glencore;
 using System.Security.Cryptography;
 
 
+//Rectangle r = new Rectangle(4, "Rectangle", 40, 20);
+Shape r = new Rectangle(4, "Rectangle", 40, 20);
+r.Show();
+r = new Square(4, "SQuare", 16);
+r.Show();
+
+
+/*
+ * 
+ *  Parent class reference can point to child class object
+ *  
+ *  child class reference cannot point to parent object
+/*
 DatabaseApplication.PrintPersonTable();
+*/
 /*
 List<Book> books=FileProcessing.ReadBooksFromFile("books.json");
 
